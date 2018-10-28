@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<group>
+	<ParticleSystem>
+		<Flocking>
+			<numBoids>10000</numBoids>
+			<cohesion>0.421465</cohesion>
+			<separation>0.416259</separation>
+			<align>0.926463</align>
+			<random>0</random>
+			<cohesionDist>0.624505</cohesionDist>
+			<separationDist>0.155951</separationDist>
+			<alignDist>0.421465</alignDist>
+			<do2D>1</do2D>
+			<doBorders>0</doBorders>
+			<borderAvoid>0.0830644</borderAvoid>
+			<maxSteer>1</maxSteer>
+			<minSpeed>0.369403</minSpeed>
+			<maxSpeed>0.171569</maxSpeed>
+		</Flocking>
+		<Visual>
+			<pointScale>6.75639</pointScale>
+			<dotSize>0.0934767</dotSize>
+			<feather>1</feather>
+			<gamma>0.958768</gamma>
+			<transparency>1</transparency>
+			<trace>0.109095</trace>
+		</Visual>
+	</ParticleSystem>
+</group>
+<Swarm>
+	<ParticleSystem>
+		<Flocking>
+			<speed>0.208663</speed>
+			<numBoids>0.229488</numBoids>
+			<cohesion>0.5</cohesion>
+			<separation>0.317993</separation>
+			<align>0.5</align>
+			<random>1</random>
+			<borderAvoid>0</borderAvoid>
+			<cohesionDist>0.5</cohesionDist>
+			<separationDist>0.297168</separationDist>
+			<alignDist>0.5</alignDist>
+			<do2D>1</do2D>
+		</Flocking>
+		<Visual>
+			<pointScale>1</pointScale>
+			<dotSize>1</dotSize>
+			<feather>1</feather>
+			<gamma>1</gamma>
+			<transparency>0.833403</transparency>
+			<trace>0.130571</trace>
+		</Visual>
+	</ParticleSystem>
+</Swarm>
