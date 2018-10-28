@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxGpuParticles.h"
+#include "GpuParticles.h"
 #include "ofxGui.h"
 #include "ofxSyphonUtils.h"
 #include "ofxOscParameterSync.h"
@@ -34,7 +34,7 @@ private:
     // set any update uniforms in this function
     void onParticlesUpdate(ofShader& shader);
     
-    ofxGpuParticles particles;
+    GpuParticles particles;
     ofEasyCam cam;
 //    ofCamera cam;
 

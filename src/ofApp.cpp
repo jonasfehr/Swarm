@@ -60,11 +60,11 @@ void ofApp::setup()
             particlePosns[idx * 4 + 3] = 0.f; // dummy
         }
     }
-    particles.loadDataTexture(ofxGpuParticles::POSITION, particlePosns);
+    particles.loadDataTexture(GpuParticles::POSITION, particlePosns);
     delete[] particlePosns;
     
     // initial velocities
-    particles.zeroDataTexture(ofxGpuParticles::VELOCITY);
+    particles.zeroDataTexture(GpuParticles::VELOCITY);
     
     // listen for update event to set additonal update uniforms
     ofAddListener(particles.updateEvent, this, &ofApp::onParticlesUpdate);
