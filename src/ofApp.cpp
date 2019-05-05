@@ -38,7 +38,7 @@ void ofApp::setup()
     
     // 1,000,000 particles
     unsigned w = 600;
-    unsigned h = 1;
+    unsigned h = 2;
     
     
     particles.init(w, h);
@@ -80,8 +80,14 @@ void ofApp::setup()
     cam.setNearClip(0.);
 //        cam.disableMouseInput();
 
-    syphonIn.setup("MadMapper", "Borders");
-    particles.setBorderTexture(syphonIn.getTexture());
+    
+    syphonInBorder.setup("Border", "MadMapper");
+    particles.setBorderTexture(syphonInBorder.getTexture());
+    
+    syphonInNoise.setup("NoiseInput", "MadMapper");
+    particles.setNoiseTexture(syphonInNoise.getTexture());
+
+
     
     // OSC
     oscParamSync.setup(particles.parameters, PORT_RECEIVE, HOST, PORT_SEND);
@@ -90,7 +96,6 @@ void ofApp::setup()
 //--------------------------------------------------------------
 void ofApp::update()
 {
-    ofSetWindowTitle(ofToString(ofGetFrameRate(), 2));
     particles.update();
     
     oscParamSync.update();
@@ -124,11 +129,19 @@ void ofApp::draw()
 
     syphonOut.draw();
     int size = 100;
-    syphonIn.draw(ofGetWidth()-size, ofGetHeight()-size, size,size);
+    syphonInBorder.draw(ofGetWidth()-size*2., ofGetHeight()-size, size,size);
+    syphonInNoise.draw(ofGetWidth()-size, ofGetHeight()-size, size,size);
 
     gui.draw();
     
-    syphonOut.publish();    
+    syphonOut.publish();
+    
+    stringstream windowInfo;
+    windowInfo << " | Syphon (b): " << syphonInBorder.getName();
+    windowInfo << " | Syphon (n): " << syphonInNoise.getName();
+    windowInfo << " | FPS: " << fixed << setprecision(1) << ofGetFrameRate();
+    
+    ofSetWindowTitle(windowInfo.str());
 }
 
 //--------------------------------------------------------------
@@ -138,7 +151,8 @@ void ofApp::keyPressed(int key){
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-    if(key == 'i') syphonIn.next();
+    if(key == 'b') syphonInBorder.next();
+    if(key == 'n') syphonInNoise.next();
 
 }
 

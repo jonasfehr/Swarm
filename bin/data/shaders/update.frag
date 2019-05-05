@@ -4,6 +4,7 @@
 uniform sampler2DRect particles0;
 uniform sampler2DRect particles1;
 uniform sampler2DRect borderTex;
+uniform sampler2DRect noiseTex;
 
 uniform vec3 mouse;
 uniform float radiusSquared;
@@ -170,7 +171,7 @@ vec2 indexToTexCoord(int index){
 
 int texCoordToIndex(vec2 texCoord){
   int index;
-  index = int(texCoord.y*inputSize.x+texCoord.x);
+  index = int(int(texCoord.y)*inputSize.x+int(texCoord.x));
   return index;
 }
 
@@ -308,7 +309,7 @@ void UpdateBoid( int index, inout Boid thisBoid )
 
     vRandomSteering = ( hash31( float( index ) + elapsed ) * 2.0 - 1.0 );
 
-    float noise = texture(borderTex, thisBoid.vPos.xz*128).x;
+    float noise = texture(noiseTex, thisBoid.vPos.xz*128).x;
     vNoiseSteering.xz = rotate2d(float(noise  * TWO_PI))*vec2(1.0,0.0);
     // vNoiseSteering = rotate(vec3(1.0,0.0,0.0), float(noise  * TWO_PI), vec3(0.0f,0.0f,1.0f));
 

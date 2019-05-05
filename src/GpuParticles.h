@@ -45,22 +45,22 @@
 class GpuParticles
 {
 public:
-    ofParameter<float> speedBoids{"speedBoids", 1.f, 0.0f, 1.0f};
+    ofParameter<float> speedBoids{"speedBoids", 0.5f, 0.0f, 1.0f};
     ofParameter<float> numBoids{"numBoids", 1.0f, 0.0f, 1.0f};
-    ofParameter<float> cohesion{"cohesion", 0.5f, 0.0f, 1.0f};
-    ofParameter<float> separation{"separation", 0.5f, 0.0f, 1.0f};
-    ofParameter<float> align{"align", 0.5f, 0.0f, 1.0f};
+    ofParameter<float> cohesion{"cohesion", 0.6f, 0.0f, 1.0f};
+    ofParameter<float> separation{"separation", 0.1f, 0.0f, 1.0f};
+    ofParameter<float> align{"align", 0.4f, 0.0f, 1.0f};
     ofParameter<float> random{"random", 0.01f, 0.0f, 1.0f};
-    ofParameter<float> borderAvoid{"borderAvoid", 0.01f, 0.0f, 1.0f};
-    ofParameter<float> noiseSteering{"noiseSteerings", 0.01f, 0.0f, 1.0f};
-    ofParameter<float> cohesionDist{"cohesionDist", 0.5f, 0.0f, 1.0f};
-    ofParameter<float> separationDist{"separationDist", 0.5f, 0.0f, 1.0f};
-    ofParameter<float> alignDist{"alignDist", 0.5f, 0.0f, 1.0f};
+    ofParameter<float> borderAvoid{"borderAvoid", 0.0f, 0.0f, 1.0f};
+    ofParameter<float> noiseSteering{"noiseSteerings", 0.0f, 0.0f, 1.0f};
+    ofParameter<float> cohesionDist{"cohesionDist", 0.1f, 0.0f, 1.0f};
+    ofParameter<float> separationDist{"separationDist", 0.1f, 0.0f, 1.0f};
+    ofParameter<float> alignDist{"alignDist", 0.4f, 0.0f, 1.0f};
     ofParameter<bool> do2D{"do2D", true};
     
     ofParameterGroup parametersFlocking{"Flocking", speedBoids, numBoids, cohesion, separation, align, random, borderAvoid,noiseSteering, cohesionDist, separationDist, alignDist, do2D };
     
-    ofParameter<float> pointScale{"pointScale", 1.0f, 0.0001f, 50.0f};
+    ofParameter<float> pointScale{"pointScale", 0.2f, 0.0001f, 1.0f};
     ofParameter<float> dotSize{"dotSize", 1.0f, 0.f, 1.0f};
     ofParameter<float> feather{"feather", 1.0f, 0.f, 1.0f};
     ofParameter<float> gamma{"gamma", 1.0f, 0.000001f, 2.0f};
@@ -126,6 +126,10 @@ public:
         this->borderTex = &tex;
         borderTex->bind(14);
     }
+    void setNoiseTexture(ofTexture & tex){
+        this->noiseTex = &tex;
+        noiseTex->bind(13);
+    }
     
 private:
     ofFbo fbos[2];
@@ -142,6 +146,7 @@ private:
     ofVboMesh quadMeshDot;
     
     ofTexture * borderTex;
-    
+    ofTexture * noiseTex;
+
 };
 

@@ -40,7 +40,8 @@ private:
 
     ofxPanel gui;
     
-    ofxSyphonClientDir syphonIn;
+    ofxSyphonClientDir syphonInNoise;
+    ofxSyphonClientDir syphonInBorder;
     ofxSyphonFbo syphonOut;
 
     ofParameter<float> trace{"trace", 1.0f, 0.f, 1.0f};

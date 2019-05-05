@@ -104,7 +104,7 @@ void GpuParticles::init(unsigned width, unsigned height, ofPrimitiveMode primiti
     //        sparkImg.getTexture().bind(15);
     //        sparkImg.update();
     
-    dotFbo.allocate(128 , 128, GL_RGB32F);
+    dotFbo.allocate(64 , 64, GL_RGB32F);
     dotShader.load("shaders/Dot");
     dotFbo.getTexture().bind(15);
     
@@ -137,7 +137,7 @@ void GpuParticles::loadShaders(const string& updateShaderName, const string& dra
 
 void GpuParticles::update()
 {
-    fbos[1 - currentReadFbo].begin(false);
+    fbos[1 - currentReadFbo].begin(OF_FBOMODE_NODEFAULTS);
     glPushAttrib(GL_ENABLE_BIT);
     // we set up no camera model and ignore the modelview and projection matrices
     // in the vertex shader, we make a viewport large enough to ensure the shader
@@ -151,6 +151,7 @@ void GpuParticles::update()
     ofNotifyEvent(updateEvent, updateShader, this);
     setUniforms(updateShader);
     if(borderTex->isAllocated())updateShader.setUniformTexture("borderTex", *borderTex, 14);
+    if(noiseTex->isAllocated())updateShader.setUniformTexture("noiseTex", *noiseTex, 13);
     updateShader.setUniform2f("inputSize", ofVec2f(width, height));
     updateShader.setUniform1i("iFrame", ofGetFrameNum());
     updateShader.setUniform1f("numBoids", numBoids);
@@ -197,7 +198,7 @@ void GpuParticles::draw()
     //    updateRender.setUniform1i("resolution", (float)textureRes);
     drawShader.setUniform2f("screen", (float)ofGetWidth(), (float)ofGetHeight());
     drawShader.setUniform1f("numBoids", numBoids);
-    drawShader.setUniform1f("size", (float)pointScale);
+    drawShader.setUniform1f("size", (float)pointScale*10.0);
     drawShader.setUniform2f("inputSize", ofVec2f(width, height));
     drawShader.setUniform1f("imgWidth", (float)dotFbo.getWidth());
     drawShader.setUniform1f("imgHeight", (float)dotFbo.getHeight());
