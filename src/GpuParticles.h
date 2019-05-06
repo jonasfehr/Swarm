@@ -52,7 +52,7 @@ public:
     ofParameter<float> align{"align", 0.4f, 0.0f, 1.0f};
     ofParameter<float> random{"random", 0.01f, 0.0f, 1.0f};
     ofParameter<float> borderAvoid{"borderAvoid", 0.0f, 0.0f, 1.0f};
-    ofParameter<float> noiseSteering{"noiseSteerings", 0.0f, 0.0f, 1.0f};
+    ofParameter<float> noiseSteering{"noiseSteering", 0.0f, 0.0f, 1.0f};
     ofParameter<float> cohesionDist{"cohesionDist", 0.1f, 0.0f, 1.0f};
     ofParameter<float> separationDist{"separationDist", 0.1f, 0.0f, 1.0f};
     ofParameter<float> alignDist{"alignDist", 0.4f, 0.0f, 1.0f};
