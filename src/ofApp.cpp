@@ -115,7 +115,7 @@ void ofApp::draw()
 {
     syphonOut.begin();
     {
-        ofSetColor(ofColor::black, 255*pow(trace,2));
+        ofSetColor(ofColor::black, 255*pow(trace,3));
         ofDrawRectangle(0,0, syphonOut.getWidth(), syphonOut.getHeight());
         cam.begin();
         {
